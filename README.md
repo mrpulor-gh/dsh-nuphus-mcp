@@ -22,6 +22,9 @@ the plugin activates automatically — no manual `cordis.patch.yml` editing.
 
 - All 38 nuphus-mcp tools register as `mcp__nuphus-mcp__*` (e.g.
   `mcp__nuphus-mcp__desktop_click`, `mcp__nuphus-mcp__browser_snapshot`).
+- `nuphus-mcp` is **auto-installed** on first boot if it's not already on
+  `PATH` (`npm install -g @nuphus/nuphus-mcp`), so installing the plugin alone
+  is enough.
 - `--confirm-write` is enabled by default — write tools require an explicit
   `"confirm": true` argument.
 - BYOK vision keys and the external-browser CDP endpoint are read from the
@@ -30,9 +33,7 @@ the plugin activates automatically — no manual `cordis.patch.yml` editing.
 ## Requirements
 
 - DeepSeek Harness with the `web` profile (`npx @deepseek-ai/dsh web`)
-- Node.js `^22.19` or `>=24`
-- `nuphus-mcp` on `PATH` (`npm install -g @nuphus/nuphus-mcp`) or override
-  `command` in the plugin config
+- Node.js `^22.19` or `>=24` and `npm` (used by the auto-install fallback)
 - DSH must run in the desktop session of the machine you want controlled
 
 ## Configuration

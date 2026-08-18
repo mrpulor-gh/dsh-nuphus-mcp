@@ -21,6 +21,8 @@ npx -p @deepseek-ai/dsh dsh plugin --profile web add github:mrpulor-gh/dsh-nuphu
 
 - 38 个 nuphus-mcp 工具全部注册为 `mcp__nuphus-mcp__*`
   （如 `mcp__nuphus-mcp__desktop_click`、`mcp__nuphus-mcp__browser_snapshot`）。
+- `nuphus-mcp` 首次启动时若不在 PATH 上会**自动安装**
+  （`npm install -g @nuphus/nuphus-mcp`），只装插件就够了。
 - 默认开启 `--confirm-write`——写工具必须显式携带 `"confirm": true`。
 - BYOK 视觉密钥与外部浏览器 CDP 地址继续读同一套 `NUPHUS_MCP_*` 环境变量，
   与其他客户端完全一致。
@@ -28,9 +30,7 @@ npx -p @deepseek-ai/dsh dsh plugin --profile web add github:mrpulor-gh/dsh-nuphu
 ## 环境要求
 
 - DeepSeek Harness `web` profile（`npx @deepseek-ai/dsh web`）
-- Node.js `^22.19` 或 `>=24`
-- `nuphus-mcp` 已在 PATH（`npm install -g @nuphus/nuphus-mcp`），或在插件配置里
-  覆盖 `command`
+- Node.js `^22.19` 或 `>=24`，且带有 `npm`（自动安装兜底用）
 - DSH 需运行在被控机器的桌面会话里
 
 ## 配置
