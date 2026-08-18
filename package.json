@@ -1,0 +1,43 @@
+{
+  "name": "dsh-nuphus-mcp",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness (DSH) plugin: mount the nuphus-mcp desktop automation MCP server as native tools (mcp__nuphus-mcp__*).",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "deepseek",
+    "mcp",
+    "model-context-protocol",
+    "stdio",
+    "desktop-automation",
+    "computer-use",
+    "dsh-plugin",
+    "cordis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrpulor-gh/dsh-nuphus-mcp.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@deepseek-ai/dsh-mcp-client": "^0.0.1-rc.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

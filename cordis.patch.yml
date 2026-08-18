@@ -1,0 +1,6 @@
+# dsh-nuphus-mcp bundle patch: auto-activates the plugin row in any profile
+# that installs this package (dsh plugin --profile <name> add ...). The user's
+# own cordis.patch.yml may still override or disable this row by id.
+- insert:
+    - id: dsh-nuphus-mcp
+      name: 'dsh-nuphus-mcp'
