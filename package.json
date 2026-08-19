@@ -1,6 +1,6 @@
 {
   "name": "dsh-nuphus-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DeepSeek Harness (DSH) plugin: mount the nuphus-mcp desktop automation MCP server as native tools (mcp__nuphus-mcp__*).",
   "type": "module",
   "main": "lib/index.js",
