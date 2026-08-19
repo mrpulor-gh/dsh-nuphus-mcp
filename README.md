@@ -1,13 +1,9 @@
 # dsh-nuphus-mcp
 
-**DeepSeek Harness (DSH) plugin** that mounts the
-[nuphus-mcp](https://github.com/mrpulor-gh/nuphus-mcp) desktop automation MCP
-server as native DSH tools — computer use for your DSH agents.
-
-This package contains **no nuphus-mcp code**. It is a thin Cordis wrapper that
-spawns the existing `nuphus-mcp` binary over stdio through the official
-`@deepseek-ai/dsh-mcp-client`, so the MCP server stays a plain stdio server and
-the nuphus-mcp repo is untouched.
+DSH plugin that mounts [nuphus-mcp](https://github.com/mrpulor-gh/nuphus-mcp)
+as native DSH tools — computer use for your agents. No nuphus-mcp code inside:
+a thin Cordis wrapper that spawns the `nuphus-mcp` binary over stdio via
+`@deepseek-ai/dsh-mcp-client`.
 
 ## Install
 
@@ -15,38 +11,34 @@ the nuphus-mcp repo is untouched.
 npx -p @deepseek-ai/dsh dsh plugin --profile web add github:mrpulor-gh/dsh-nuphus-mcp
 ```
 
-Then restart `dsh --profile web`. The package declares a `dsh.bundle.patch`, so
-the plugin activates automatically — no manual `cordis.patch.yml` editing.
+Restart `dsh --profile web` — activation is automatic (`dsh.bundle.patch`).
 
 ## What you get
 
-- All 38 nuphus-mcp tools register as `mcp__nuphus-mcp__*` (e.g.
-  `mcp__nuphus-mcp__desktop_click`, `mcp__nuphus-mcp__browser_snapshot`).
-- `nuphus-mcp` is **auto-installed** on first boot if it's not already on
-  `PATH` (`npm install -g @nuphus/nuphus-mcp`), so installing the plugin alone
-  is enough.
-- `--confirm-write` is enabled by default — write tools require an explicit
-  `"confirm": true` argument.
-- BYOK vision keys and the external-browser CDP endpoint are read from the
-  same `NUPHUS_MCP_*` environment variables used by every other client.
+- All 38 tools register as `mcp__nuphus-mcp__*`
+- Auto-installs `nuphus-mcp` on first boot if missing on `PATH`
+- `--confirm-write` on by default (write tools need `"confirm": true`)
+- Same `NUPHUS_MCP_*` env vars as every other client
 
 ## Requirements
 
-- DeepSeek Harness with the `web` profile (`npx @deepseek-ai/dsh web`)
-- Node.js `^22.19` or `>=24` and `npm` (used by the auto-install fallback)
-- DSH must run in the desktop session of the machine you want controlled
+- DSH `web` profile, Node.js `^22.19` / `>=24`
+- DSH must run in the desktop session of the controlled machine
 
-## Configuration
+## Config
 
-Defaults; override via `cordis.yml` / patch on the `dsh-nuphus-mcp` row:
+Overridable in `cordis.yml` / patch:
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `serverName` | `nuphus-mcp` | Tool namespace (`mcp__nuphus-mcp__*`) |
+| `serverName` | `nuphus-mcp` | Tool namespace |
 | `command` | `nuphus-mcp` | Executable to spawn |
-| `args` | `["--confirm-write"]` | CLI arguments |
-| `toolCallTimeoutMs` | `120000` | Per-call timeout (DSH default 60000 is too low for screenshots/OCR) |
-| `reconnect.enabled` | `true` | Auto-reconnect after a drop |
+| `args` | `["--confirm-write"]` | CLI args |
+| `toolCallTimeoutMs` | `120000` | Per-call timeout (screenshots/OCR exceed 60000) |
+| `reconnect.enabled` | `true` | Auto-reconnect |
+
+Tool list, vision keys and external-browser CDP setup live in the
+[nuphus-mcp](https://github.com/mrpulor-gh/nuphus-mcp) README.
 
 ## License
 
