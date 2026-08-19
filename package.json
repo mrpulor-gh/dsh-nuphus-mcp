@@ -32,6 +32,9 @@
     "url": "git+https://github.com/mrpulor-gh/dsh-nuphus-mcp.git"
   },
   "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  },
   "dependencies": {
     "@deepseek-ai/dsh-mcp-client": "^0.0.1-rc.1"
   },
