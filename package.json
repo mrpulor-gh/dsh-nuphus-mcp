@@ -10,6 +10,7 @@
   },
   "files": [
     "lib/index.js",
+    "lib/config.js",
     "cordis.patch.yml",
     "README.md",
     "README.zh-CN.md",
