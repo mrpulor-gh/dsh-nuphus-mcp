@@ -37,3 +37,15 @@ test('resolveConfig falls back on invalid timeout and args', () => {
   assert.equal(resolveConfig({ toolCallTimeoutMs: '-5' }).toolCallTimeoutMs, 120000);
   assert.deepEqual(resolveConfig({ args: 'not-an-array' }).args, ['--confirm-write']);
 });
+
+test('config exposes opt-out installation without advertising unsupported reconnect', () => {
+  assert.equal(resolveConfig().autoInstall, true);
+  assert.equal(resolveConfig({ autoInstall: false }).autoInstall, false);
+  assert.equal('reconnect' in resolveConfig({ reconnect: { enabled: true } }), false);
+  assert.throws(() => resolveConfig({ autoInstall: 'false' }), /autoInstall/);
+});
+
+test('browser policy env variables are forwarded explicitly', () => {
+  assert.ok(PASSTHROUGH_ENV.includes('NUPHUS_MCP_ALLOW_PRIVATE_NAV'));
+  assert.ok(PASSTHROUGH_ENV.includes('NUPHUS_MCP_EFFECT_TIMEOUT_MS'));
+});
